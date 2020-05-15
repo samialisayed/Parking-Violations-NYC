@@ -31,13 +31,13 @@ def FilterVio(partId, records):
                 county = '5'
             
             if str(row[4].split('/')[-1]) in ['2015','2016','2017','2018','2019']:
-                ticket = int(row[0])
-                year = str(row[4].split('/')[-1])
                 house = re.sub('[^0-9-]','',row[23]).replace('--','-').strip('-').split('-')
                 if "" not in house:
                     house = tuple(map(int, house))
-                street = row[24].lower()
-                yield ((street,county),(year,house,ticket))
+                    ticket = int(row[0])
+                    year = str(row[4].split('/')[-1])
+                    street = row[24].lower()
+                    yield ((street,county),(year,house,ticket))
             
 def FilterCent(partId, records):
     if partId==0:
@@ -95,7 +95,8 @@ def allid(partId, records):
     import csv
     reader = csv.reader(records)
     for row in reader:
-        yield(int(row[0]),(0, 0, 0, 0, 0, 0))
+        ID = int(row[0])
+        yield(ID,(0, 0, 0, 0, 0, 0))
         
         
 def to_csv(x):
