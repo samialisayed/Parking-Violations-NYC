@@ -106,8 +106,8 @@ def to_csv(x):
     
 if __name__ == '__main__':
     sc = SparkContext()
-    vio = sc.textFile('/data/share/bdm/nyc_parking_violation/*.csv')
-    cent = sc.textFile('/data/share/bdm/nyc_cscl.csv')
+    vio = sc.textFile('/data/share/bdm/nyc_parking_violation/*.csv', use_unicode=True)
+    cent = sc.textFile('/data/share/bdm/nyc_cscl.csv', use_unicode=True)
     vio_rdd = vio.mapPartitionsWithIndex(FilterVio).distinct()
     cent_rdd = cent.mapPartitionsWithIndex(FilterCent).distinct()
     full = vio_rdd.join(cent_rdd)\
