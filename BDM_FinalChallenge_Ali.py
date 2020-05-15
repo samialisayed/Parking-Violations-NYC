@@ -34,7 +34,7 @@ def FilterVio(partId, records):
                 ticket = int(row[0])
                 year = str(row[4].split('/')[-1])
                 house = re.sub('[^0-9-]','',row[23])
-                house = tuple(map(int, house.replace('--','-').split('-')))
+                house = tuple(map(int, house.replace('--','-').strip('-').split('-')))
                 street = row[24].lower()
                 yield ((street,county),(year,house,ticket))
             
